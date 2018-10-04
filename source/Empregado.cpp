@@ -5,7 +5,7 @@
 //using namespace std;
 
 
-int cadastro_Alet(){
+int salario_Alet(){
     srand(time(NULL));
     int cadastro = rand() % 1000;
     return cadastro;
@@ -32,14 +32,19 @@ class Empregado{
 
     friend int cadastro_Alet();
     public:
-        Empregado(std::string = "Anônimo", int tam  = 0);
-        Empregado();
+        Empregado(std::string nome = "Anônimo", int tamanho  = 0);
+        Empregado(int tamanho, std::string a){
+            set_nome(a);
+            aloca_vetor(tamanho);
+        }
+        ~Empregado(){delete[] lista;}
         void aloca_vetor(int _tam){
             if(_tam > 0){
                 lista  = new std::string[_tam];
                 tamanho = _tam;
+                std::cout <<  "Vetor !!"<< std::endl;
             }
-            
+            std::cout << "Vetor nao alocado!" << std::endl;
         }
         void set_nome(std::string);
         void set_lista();
@@ -77,11 +82,15 @@ class Empregado{
             std::getline(std::cin, lista[i]);
         }
     }
-    void show_lista(){
+    void Empregado::show_lista(){
         for(int i = 0; i < get_tamanho(); i++)
             std::cout<< lista[i] << std::endl;
     }
 
+int main(){
+
+    Empregado();
+}
 
 
 
