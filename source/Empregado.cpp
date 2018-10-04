@@ -42,7 +42,14 @@ class Empregado{
             
         }
         void set_nome(std::string);
+        void set_lista();
+        void show_lista();
 
+        //Metodos get
+
+        int get_tamanho(){
+            return tamanho;
+        }
         
         
     private:
@@ -61,6 +68,18 @@ class Empregado{
     void Empregado::set_nome(std::string _name){
         std::getline(std::cin, _name);
         nome = _name;
+    }
+    
+    void Empregado::set_lista(){
+        std::cout<<"Digite o nome da(s) empresas que trabalhou" <<endl;
+        for(int i = 0; i < get_tamanho(); i++){
+            std::cout<< "#" << i+1 << "Empresa" << endl;
+            std::getline(std::cin, lista[i]);
+        }
+    }
+    void show_lista(){
+        for(int i = 0; i < get_tamanho(); i++)
+            std::cout<< lista[i] << std::endl;
     }
 
 
