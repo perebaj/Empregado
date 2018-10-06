@@ -29,7 +29,7 @@ bool num_REP(int cadastro, int new_cadastro){
 }
 
 class Empregado{
-
+    deix
     friend int cadastro_Alet();
     public:
         Empregado(std::string nome = "Anônimo", int tamanho  = 0);
