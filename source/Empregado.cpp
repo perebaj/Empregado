@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h> //SRAND RAND
 #include <time.h>   // TIME
-adskk
+adskk adkja
 /*
 
     int salario_Alet()
