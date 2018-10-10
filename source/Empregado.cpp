@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h> //SRAND RAND
 #include <time.h>   // TIME
+
 class Empregado
 {
 
@@ -13,7 +14,6 @@ class Empregado
     {
         set_nome(a);
         set_aloca_vetor(tamanho);
-        cadastro++;
     }
     ~Empregado() { delete[] lista; }
 
@@ -24,16 +24,14 @@ class Empregado
     void show_lista() const;
     void set_salario();
 
-    //MÉTODOD GET
+    //MÉTODOD SET
 
     int get_tamanho() const { return tamanho; }
-    int get_cadastro() const { return cadastro; }
-    std::string get_nome() const { return nome; }
 
   private:
     std::string nome;
-    static int cadastro; // NÚMERO SEQUENCIAL DE CADASTRO
-    int tamanho;         // TAMANHO DA LISTA
+    static int cadastro;
+    int tamanho; // TAMANHO DA LISTA
     double salario;
     std::string *lista; // PONTEIRO PARA PRIMEIRA POSIÇÃO DA LISTA
 };
@@ -48,24 +46,51 @@ void Empregado::set_nome(std::string _name)
     std::getline(std::cin, _name);
     nome = _name;
 }
+/*
+     OBJ     ALOCAR ESPAÇO DE MEMORIA PARA O VETOR CASO O SEU TAMANHO SEJA VÁLIDO
+    @PARAM      _tam        TAMANHO DO VETOR QUE VAI SER VERIFICADO
+    */
+void Empregado::set_aloca_vetor(int _tam)
+{
+    if (_tam > 0)
+    {
+        lista = new std::string[_tam];
+        tamanho = _tam;
+        std::cout << "Vetor !!" << std::endl;
+    }
+    else
+        std::cout << "Vetor nao alocado!" << std::endl;
+}
+/*
+    OBJ:        LER O NOME DAS EMPRESAS QUE O FUNCIONÁRIO JA TRABALHOU
 
+    */
 void Empregado::set_lista()
 {
     std::cout << "Digite o nome da(s) empresas que trabalhou" << std::endl;
     for (int i = 0; i < get_tamanho(); i++)
     {
-        std::cout << "#" << i + 1 << "Empresa" << std::endl;
+        std::cout << "#" << i + 1 << " Empresa" << std::endl;
         std::getline(std::cin, lista[i]);
     }
-    else std::cout << "Vetor nao alocado!" << std::endl;
 }
+/*
+    MOSTRAR A LISTA DE EMPRESAS
+    */
 void Empregado::show_lista() const
 {
-    std::cout << "Empregado: " << get_cadastro() << std::endl;
-    std::cout << "Nome: " << get_nome() << std::endl;
-    std::cout << "Lista de empresas que trabalhou: " << std::endl;
     for (int i = 0; i < get_tamanho(); i++)
         std::cout << lista[i] << std::endl;
+}
+/*
+OBJ     VÁLIDAR SALÁRIO 
+*/
+void Empregado::set_salario()
+{
+    double salary;
+    std::cin >> salary;
+    if (salary > 0)
+        this->salario = salary;
 }
 
 int main()
@@ -76,7 +101,7 @@ int main()
     int aux = 5;
     while (aux != 0)
     {
-        std::cout << "1)Iserir nome das empresas que o funcionário ja trabalhou" << std::endl;
+        std::cout << "1)Nome das empresas que o funcionário ja trabalhou" << std::endl;
         std::cout << "2)Salario" << std::endl;
         std::cout << "0)Sair" << std::endl;
         std::cin >> aux;
