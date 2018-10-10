@@ -76,9 +76,9 @@ class Empregado{
     }
     
     void Empregado::set_lista(){
-        std::cout<<"Digite o nome da(s) empresas que trabalhou" <<endl;
+        std::cout<<"Digite o nome da(s) empresas que trabalhou" <<std::endl;
         for(int i = 0; i < get_tamanho(); i++){
-            std::cout<< "#" << i+1 << "Empresa" << endl;
+            std::cout<< "#" << i+1 << "Empresa" << std::endl;
             std::getline(std::cin, lista[i]);
         }
     }
@@ -88,8 +88,25 @@ class Empregado{
     }
 
 int main(){
+    int aux;
+    while (aux != 0){    
+        std::cout << " 1) Cadastrar um novo empregado?" << std::endl;
+        std::cout << " 0) Sair" << std::endl;
+        std::cin >>  aux;
+        std::string a;
+        int tam;
+        if(aux == 1){
+            std::cout << "Digite o nome do empregado"<<  std::endl;
+            std::getline(std::cin,a);
+            std::cout <<"Em quantas empresas ele(a) ja trabalhou?" << std::endl;
+            std::cin >> tam;
+            Empregado e1(a,tam);
+        }
+        if(tam > 0){
+            //e1.set_lista();
+        }
+    }
 
-    Empregado();
 }
 
 
