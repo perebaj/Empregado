@@ -31,13 +31,14 @@ class Empregado
     std::string get_nome() const {return nome;}
     double get_salario() const {return salario;}
   private:
+    static double salario_total;
     std::string nome;
     static int cadastro;//NUMERO SEQUENCIAL DE CADASTRO DE CADA FUNCIONÁRIO
     int tamanho; // TAMANHO DA LISTA
     double salario;
     std::string *lista; // PONTEIRO PARA PRIMEIRA POSIÇÃO DA LISTA
 };
-
+double Empregado::salario_total = 0;
 int Empregado::cadastro = 0;
 
 /*
@@ -101,6 +102,7 @@ void Empregado::set_salario()
     std::cin >> salary;
     if (salary > 0)
         this->salario = salary;
+    salario_total = salario_total + salario;
 }
 
 int main()
